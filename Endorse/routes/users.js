@@ -41,4 +41,16 @@ router.get("/logout", (req, res) => {
   res.redirect("/login");
 });
 
+router.get('/userprofile', (req, res, next) => {
+  User.findById(req.user._id)
+  .then(user => {res.render("users/userProfile", user)})
+  .catch( err => {next(err)})
+})
+
+router.put('/editUser', (req, res, next) => {
+  User.findByIdAndUpdate(req.user._id, req.body)
+  .then(user => {res.redirect(users/userProfile, user)})
+  .catch( err => next(err))
+})
+
 module.exports = router;
