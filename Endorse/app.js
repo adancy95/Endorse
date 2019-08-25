@@ -8,6 +8,12 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session      = require("express-session");
+const bcrypt       = require("bcryptjs");
+const User         = require("./models/user");
+const passport     = require("passport");
+const LocalStrategy= require("passport-local").Strategy;
+const flash        = require("connect-flash");
 
 
 mongoose
