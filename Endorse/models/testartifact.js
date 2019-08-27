@@ -38,6 +38,10 @@ const testArtifactSchema = new Schema({
         imageURL: String
       }
     ]
+  },
+  project: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Project'
   }
 },
 {
@@ -45,5 +49,5 @@ const testArtifactSchema = new Schema({
 })
 
 
-const testArtifact = mongoose.model('testArtifact', testArtifactSchema);
-module.exports = testArtifact;
+const TestArtifact = mongoose.model('TestArtifact', testArtifactSchema);
+module.exports = TestArtifact;
