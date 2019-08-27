@@ -102,7 +102,9 @@ app.use((req, res, next) => {
 
 
 app.use('/', require('./routes/index'));
-app.use('/', require('./routes/users'))
+app.use('/', require('./routes/users'));
+app.use('/', require('./routes/testArtifacts'));
+app.use('/', require('./routes/projects'));
 
 
 module.exports = app;
