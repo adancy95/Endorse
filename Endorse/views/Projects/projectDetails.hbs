@@ -1,0 +1,14 @@
+
+ <h1>Project Name:{{tickets.[1].project.projectName}}</h1>
+
+{{#each tickets}}
+  <h3><a href="/testartifacts/artifact/{{this._id}}">{{this.ticketNumber}}</a></h3>
+  <p>Summary: {{this.issueSummary}}</p>
+  <p>JiraLink: <a href="{{this.jiraLink}}">{{this.jiraLink}}</a></p>
+  <p> Test Environment: {{this.testEnvironment}}</p>
+  <p> Issue Type: {{this.testEnvironment}}</p>
+
+  <hr>
+
+
+{{/each}}
