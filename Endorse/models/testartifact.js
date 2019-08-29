@@ -30,15 +30,6 @@ const testArtifactSchema = new Schema({
   },
   testCases: [String],
   storyDescription: String,
-  scenario: {
-    name: String,
-    evidence: [
-      {
-        imageDescription: String,
-        imageURL: String
-      }
-    ]
-  },
   project: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Project'
