@@ -1,8 +1,32 @@
 <div>
   <h3>Projects</h3>
+
+
+
+<form action="/projects/create" method="POST">
+        Project Name: <input type="text" name="projectName" id="project-name">
+        <input type="submit" value="Add Project">
+</form>
+
+
+
+  </form>
   {{#each projects}}
   <ul>
-    <li>{{this.name}}</li>
+    <li>
+      <form method="GET"> 
+        <a href="/Projects/{{this._id}}">{{this.projectName}}</a>
+      </form>
+       <form action="/editproject/{{this._id}}" method="POST">
+        Project Name:  <input type="text" name="projectName" value="{{this.projectName}}">
+        <input type="submit" value="Edit Project">
+       </form>
+        <form action="/deleteproject/{{this._id}}" method="POST">
+        <input type="submit" value="Delete Project">
+       </form>
+
+    </li>
   </ul>
   {{/each}}
 </div>
+
