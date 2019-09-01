@@ -6,29 +6,15 @@ const testArtifactSchema = new Schema({
     type: String,
     required: true
   },
-  issueSummary: {
-    type: String,
-    required: true
-  },
-  jiraLink: {
-    type: String,
-    required: true
-  },
-  testEnvironment: {
-    type: String,
-    enum: ["Development", "QA", "Staging", "Production"]
-  },
   issueType: String,
-  sprint: String,
   tester: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
-  testStatus: {
+  ticketStatus: {
     type: String,
-    enum: ["Accepted", "Rejected", "In Testing", "Blocked"]
+    enum: ["Accepted", "Rejected", "In Testing", "Blocked", "Created"]
   },
-  testCases: [String],
   storyDescription: String,
   project: {
     type: mongoose.Schema.Types.ObjectId,
