@@ -6,15 +6,37 @@ const weeklyStatusSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
-  date: Date,
-  bugsCreated: [{type: mongoose.Schema.Types.ObjectId, ref: 'TestArtifact'}],
-  ticketsRejected: [{type: mongoose.Schema.Types.ObjectId, ref: 'TestArtifact'}],
-  stories: [{type: mongoose.Schema.Types.ObjectId, ref: 'TestArtifact'}],
+  beginDate: Date,
+  endDate: Date,
+  bugsCreated: [
+    {
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'TestArtifact'
+    }
+  ],
+  ticketsRejected: [
+    {
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'TestArtifact'
+    }
+  ],
+  stories: [
+    {
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'TestArtifact'
+    }
+  ],
   blockers: String,
   general: String,
   nextWeek: String,
-  hiptest: String,
-  project: [{type: mongoose.Schema.Types.ObjectId, ref: 'Project'}]
+  testCases: String,
+  project: [
+    {
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'Project'
+    }
+  ],
+  comment: [String]
 
 },
 {
