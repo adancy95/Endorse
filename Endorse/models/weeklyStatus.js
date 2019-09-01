@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const weeklyStatusSchema = new Schema({
-  user: {
+  tester: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
@@ -16,4 +16,10 @@ const weeklyStatusSchema = new Schema({
   hiptest: String,
   project: [{type: mongoose.Schema.Types.ObjectId, ref: 'Project'}]
 
+},
+{
+  timestamps: {createdAt: "created_at", updatedAt: "updated_at"}
 })
+
+const WeeklyStatus = mongoose.model('WeeklyStatus',  weeklyStatusSchema);
+module.exports = WeeklyStatus;
