@@ -15,7 +15,7 @@ const testArtifactSchema = new Schema({
     type: String,
     enum: ["Accepted", "Rejected", "In Testing", "Blocked", "Created"]
   },
-  storyDescription: String,
+  comment: String,
   project: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Project'
