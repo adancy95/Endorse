@@ -3,42 +3,62 @@ const router        = express.Router();
 const Projects      = require('../models/project');
 const TestArtifacts = require('../models/testartifact');
 
-router.get('/testartifacts', (req, res, next) => {
+router.get('/api/testartifacts', (req, res, next) => {
   TestArtifacts.find()
-  .then(tests => {
-    res.render('TestArtifacts/allTestArtifacts', {tests})
+  .then(artifacts => {
+    res.json(artifacts)
   })
   .catch(err => next(err))
 })
 
-router.get('/testartifacts/artifact/:id', (req, res, next) => {
+router.get('/api/testartifacts/artifact/:id', (req, res, next) => {
   TestArtifacts.findById(req.params.id)
-  .then(test => {
-    res.render('TestArtifacts/ticketDetails', {test})
+  .then(artifact => {
+    res.json(artifact)
   })
   .catch(err => next(err))
 })
 
-router.post('/testartifacts/create', (req, res, next) => {
+router.post('/api/testartifacts/create', (req, res, next) => {
   TestArtifacts.create({
     ticketNumber: req.body.ticketNumber,
-    issueSummary: req.body.issueSummary,
-    jiraLink: req.body.jiraLink,
-    testEnvironment: req.body.testEnvironment,
     issueType: req.body.issueType,
-    sprint: req.body.sprint,
     tester: req.body.tester,
-    testStatus: req.body.testStatus,
-    testCases: req.body.testCases,
-    storyDescription: req.body.storyDescription,
+    ticketStatus: req.body.ticketStatus,
+    comment: req.body.comment,
     project: req.body.project
     
   })
   .then(artifact => {
-    res.redirect('/testartifacts')
+    res.json([{response: "The new artifact was created"},  artifact])
   })
   .catch(err => next(err))
   
 })
+
+router.put('/api/testartifacts/update/:id', (req, res, next) => {
+  TestArtifacts.findByIdAndUpdate(req.params.id, {
+    ticketNumber: req.body.ticketNumber,
+    issueType: req.body.issueType,
+    tester: req.body.tester,
+    ticketStatus: req.body.ticketStatus,
+    comment: req.body.comment,
+    project: req.body.project
+  })
+  .then(updatedArtifact => {
+    res.json([{response: "The test artifact was updated"}, updatedArtifact])
+  })
+  .catch(err => next(err))
+})
+
+router.delete('/api/testartifacts/delete/:id', (req, res, next) => {
+  TestArtifacts.findByIdAndDelete(req.params.id)
+  .then(deletedArtifact => {
+    res.json({response: "The artifact was deleted" + deletedArtifact})
+  })
+  .catch(err => next(err))
+})
+
+
 
 module.exports = router;
