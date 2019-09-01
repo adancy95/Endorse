@@ -105,6 +105,7 @@ app.use('/', require('./routes/index'));
 app.use('/', require('./routes/users'));
 app.use('/', require('./routes/testArtifacts'));
 app.use('/', require('./routes/projects'));
+app.use('/', require('./routes/weeklyStatus'));
 
 
 module.exports = app;
