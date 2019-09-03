@@ -1,0 +1,35 @@
+
+<h1>Weekly Status Feed</h1>
+
+{{#each statuses}}
+  <div class="card">
+    <div class="card-header">
+      {{this.tester}} Weekly Status for the week of {{this.beginDate}} - {{this.endDate}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Stories Tested</h5>
+      <p class="card-text">{{this.stories}}</p>
+      <h5 class="card-title">Bugs Opened</h5>
+      <p class="card-text">{{this.bugsCreated}}</p>
+      <h5 class="card-title">Tickets Rejected</h5>
+      <p class="card-text">{{this.ticketsRejected}}</p>
+      <h5 class="card-title">Blockers</h5>
+      <p class="card-text">{{this.blockers}}</p>
+      <h5 class="card-title">General(Can include PTO time, meetings, left early, etc.)</h5>
+      <p class="card-text">{{this.general}}</p>
+      <h5 class="card-title">Next Week</h5>
+      <p class="card-text">{{this.nextWeek}}</p>
+      
+    </div>
+    <div class="card-body">
+    <a href="#" class="card-link">Edit Status</a>
+    <a href="#" class="card-link">Delete Status</a>
+  </div>
+  </div>
+  <hr>
+{{/each}}
+
+
+
+
+ <script src="/javascripts/weeklyStatus.js"></script>
