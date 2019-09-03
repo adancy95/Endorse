@@ -3,6 +3,14 @@ const router = express.Router();
 const WeeklyStatus = require('../models/weeklyStatus');
 const TestArtifacts = require('../models/testartifact');
 
+router.get('/weeklystatus', (req, res, next) => {
+  WeeklyStatus.find()
+  .then(statuses => {
+    res.render('WeeklyStatus/allWeeklyStatus', {statuses})
+  })
+  .catch(err => next(err))
+})
+
 router.get('/api/weeklystatus', (req, res, next) => {
   WeeklyStatus.find()
   .then(statuses => {
