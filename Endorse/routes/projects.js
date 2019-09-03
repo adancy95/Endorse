@@ -3,6 +3,14 @@ const router   = express.Router();
 const Projects = require('../models/project');
 const TestArtifacts = require('../models/testartifact');
 
+router.get('/projects', (req, res, next) => {
+  Projects.find()
+  .then(projects => {
+    res.render('Projects/allProjects', {projects})
+  })
+  .catch(err => next(err))
+})
+
 router.get('/api/projects', (req, res, next) => {
   Projects.find()
   .then(projects => {
