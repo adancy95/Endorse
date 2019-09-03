@@ -7,19 +7,13 @@ const testArtifactSchema = new Schema({
     required: true
   },
   issueType: String,
-  tester: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  },
+  tester: {type: Schema.Types.ObjectId, ref: 'User'},
   ticketStatus: {
     type: String,
     enum: ["Accepted", "Rejected", "In Testing", "Blocked", "Created"]
   },
   comment: String,
-  project: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Project'
-  }
+  project: {type: Schema.Types.ObjectId, ref: 'Project'}
 },
 {
   timestamps: {createdAt: "created_at", updatedAt: "updated_at"}
