@@ -4,27 +4,33 @@
 {{#each statuses}}
   <div class="card">
     <div class="card-header">
-      {{this.tester}} Weekly Status for the week of {{this.beginDate}} - {{this.endDate}}
+      <h5>{{this.tester.firstName}} {{this.tester.lastName}} Weekly Status for the week of {{this.formattedBeginDate}} - {{this.formattedEndDate}}</h5>
+    </div>
+     <div>
+      <p><i>Last Updated: {{this.formattedUpdatedDate}}</i></p>
     </div>
     <div class="card-body">
-      <h5 class="card-title">Stories Tested</h5>
+      <h6 class="card-title">Stories Tested</h6>
       <p class="card-text">{{this.stories}}</p>
-      <h5 class="card-title">Bugs Opened</h5>
+      <h6 class="card-title">Bugs Opened</h6>
       <p class="card-text">{{this.bugsCreated}}</p>
-      <h5 class="card-title">Tickets Rejected</h5>
+      <h6 class="card-title">Tickets Rejected</h6>
       <p class="card-text">{{this.ticketsRejected}}</p>
-      <h5 class="card-title">Blockers</h5>
+      <h6 class="card-title">Blockers</h6>
       <p class="card-text">{{this.blockers}}</p>
-      <h5 class="card-title">General(Can include PTO time, meetings, left early, etc.)</h5>
+      <h6 class="card-title">General</h6>
       <p class="card-text">{{this.general}}</p>
-      <h5 class="card-title">Next Week</h5>
+      <h6 class="card-title">Next Week</h6>
       <p class="card-text">{{this.nextWeek}}</p>
       
     </div>
     <div class="card-body">
-    <a href="#" class="card-link">Edit Status</a>
-    <a href="#" class="card-link">Delete Status</a>
-  </div>
+      <form action="">
+        <input type="hidden" name="status-id" id="status-id" value="{{this._id}}">
+        <a href="#" class="card-link" id="edit-status">Edit Status</a>
+        <a href="#" class="card-link" id="delete-status">Delete Status</a>
+      </form>
+    </div>
   </div>
   <hr>
 {{/each}}
