@@ -2,17 +2,24 @@ const express = require('express');
 const router = express.Router();
 const WeeklyStatus = require('../models/weeklyStatus');
 const TestArtifacts = require('../models/testartifact');
+const moment = require('moment')
 
 router.get('/weeklystatus', (req, res, next) => {
-  WeeklyStatus.find()
+  WeeklyStatus.find().populate('tester').sort({updated_at: -1})
   .then(statuses => {
+    console.log(statuses)
+    statuses.map(status => {
+      status.formattedBeginDate = moment(status.beginDate).format("MMMM Do, YYYY"); 
+      status.formattedEndDate = moment(status.endDate).format("MMMM Do, YYYY")
+      status.formattedUpdatedDate = moment(status.updated_at).format("MMMM Do, YYYY")
+    });
     res.render('WeeklyStatus/allWeeklyStatus', {statuses})
   })
   .catch(err => next(err))
 })
 
 router.get('/api/weeklystatus', (req, res, next) => {
-  WeeklyStatus.find()
+  WeeklyStatus.find().populate('tester')
   .then(statuses => {
     res.json(statuses)
   })
@@ -39,8 +46,6 @@ router.post('/api/weeklystatus/create', (req, res, next) => {
     general: req.body.general,
     nextWeek: req.body.nextWeek,
     testCases: req.body.testCases,
-    project: req.body.project,
-    comment: req.body.comment
   })
   .then(status => {
     res.json([{response: "The weekly status was created"},  status])
@@ -60,9 +65,7 @@ router.put('/api/weeklystatus/update/:id', (req, res, next) => {
     blockers: req.body.blockers,
     general: req.body.general,
     nextWeek: req.body.nextWeek,
-    testCases: req.body.testCases,
-    project: req.body.project,
-    comment: req.body.comment
+    testCases: req.body.testCases
   })
   .then(updatedStatus => {
     res.json([{response: "The weekly status was updated"}, updatedStatus])
