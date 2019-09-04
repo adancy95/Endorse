@@ -5,16 +5,13 @@ const weeklyStatusSchema = new Schema({
   tester: {type: Schema.Types.ObjectId, ref: 'User'},
   beginDate: Date,
   endDate: Date,
-  bugsCreated: [{type: Schema.Types.ObjectId, ref: 'TestArtifact'}],
-  ticketsRejected: [{type: Schema.Types.ObjectId, ref: 'TestArtifact'}],
-  stories: [{type: Schema.Types.ObjectId, ref: 'TestArtifact'}],
+  bugsCreated: String,
+  ticketsRejected: String, 
+  stories: String,
   blockers: String,
   general: String,
   nextWeek: String,
   testCases: String,
-  project: [{type: Schema.Types.ObjectId, ref: 'Project'}],
-  comment: [String]
-
 },
 {
   timestamps: {createdAt: "created_at", updatedAt: "updated_at"}
