@@ -5,6 +5,13 @@ const passport = require("passport");
 const async    = require('async');
 const User     = require("../models/user");
 
+
+router.get('/users', (req, res, next) => {
+  User.find()
+  .then(users => res.json(users))
+  .catch(err => next(err))
+})
+
 router.get('/signup', (req, res, next) => {
   res.render('users/signup')
 })
