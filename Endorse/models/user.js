@@ -22,7 +22,8 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: true
-  }
+  },
+  project: [{type: Schema.Types.ObjectId, ref: 'Project'}]
 },
 {
   timestamps: {createdAt: "created_at", updatedAt: "updated_at"}
