@@ -53,7 +53,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Endorse -- If it isn’t written down, it didn’t happen.';
+app.locals.title = '#daWeekly -- If it isn’t written down, it didn’t happen.';
 
 app.use(session({
   secret: "endorse",
