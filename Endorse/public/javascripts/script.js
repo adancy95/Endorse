@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   axios.get('/users')
   .then(users => {
     users.data.forEach(user => {
-      $('#user-links').after(`<a class="nav-link" href="#">${user.firstName} ${user.lastName}</a>`)
+      $('#user-links').after(`<a class="nav-link" href="/weeklystatus/${user._id}">${user.firstName} ${user.lastName}</a>`)
     })
   })
   .catch(err => console.log(err))
