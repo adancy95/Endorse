@@ -4,10 +4,17 @@ const WeeklyStatus = require('../models/weeklyStatus');
 const TestArtifacts = require('../models/testartifact');
 const moment = require('moment')
 
-router.get('/weeklystatus', (req, res, next) => {
-  WeeklyStatus.find().populate('tester').sort({updated_at: -1})
+router.get('/weeklystatus/:searchType', (req, res, next) => {
+  let searchQuery;
+  if(req.params.searchType === 'all'){
+    searchQuery = {};
+  }else if(req.params.searchType === 'user'){
+    searchQuery = {tester: req.user._id}
+  }else if(req.params.searchType === req.params.id){
+    searchQuery = {tester: req.params.id}
+  }
+  WeeklyStatus.find(searchQuery).populate('tester').sort({updated_at: -1})
   .then(statuses => {
-    console.log(statuses)
     statuses.map(status => {
       status.formattedBeginDate = moment(status.beginDate).format("MMMM Do, YYYY"); 
       status.formattedEndDate = moment(status.endDate).format("MMMM Do, YYYY")
@@ -29,7 +36,9 @@ router.get('/api/weeklystatus', (req, res, next) => {
 router.get('/api/weeklystatus/status/:id', (req, res, next) => {
   WeeklyStatus.findById(req.params.id)
   .then(status => {
-    res.json(status)
+      let beginDateVal = moment(status.beginDate).format('YYYY-MM-DD')
+      let endDateVal = moment(status.endDate).format('YYYY-MM-DD')
+    res.json({status, beginDateVal, endDateVal })
   })
   .catch(err => next(err))
 })
