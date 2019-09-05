@@ -12,7 +12,23 @@
 
   </form>
   {{#each projects}}
-  <ul>
+
+    <div class="card-deck">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{this.projectName}}</h5>
+          <hr>
+          <a href="#" class="card-link">Edit Project</a>
+          <a href="#" class="card-link">Delete Project</a>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated {{this.updated_at}}</small>
+        </div>
+      </div>
+    </div>
+
+    
+  {{!-- <ul>
     <li>
       <form method="GET"> 
         <a href="/Projects/{{this._id}}">{{this.projectName}}</a>
@@ -26,7 +42,7 @@
        </form>
 
     </li>
-  </ul>
+  </ul> --}}
   {{/each}}
 </div>
 
