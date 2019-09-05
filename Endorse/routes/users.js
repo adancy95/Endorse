@@ -4,6 +4,7 @@ const bcrypt   = require("bcryptjs");
 const passport = require("passport");
 const async    = require('async');
 const User     = require("../models/user");
+const Projects = require('../models/project');
 
 
 router.get('/users', (req, res, next) => {
@@ -13,7 +14,12 @@ router.get('/users', (req, res, next) => {
 })
 
 router.get('/signup', (req, res, next) => {
-  res.render('users/signup')
+  Projects.find()
+  .then( projects => {
+    res.render('users/signup', {projects})
+  })
+  .catch(err => next(err))
+  
 })
 
 router.post('/signup', (req, res, next) => {
@@ -25,7 +31,8 @@ router.post('/signup', (req, res, next) => {
     password: hashPass,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    email: req.body.email
+    email: req.body.email,
+    project: req.body.project
   })
   .then(() => res.redirect('/login'))
   .catch( err => {next(err)})
