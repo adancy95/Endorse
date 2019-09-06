@@ -32,28 +32,21 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault()
     let statusId = $(event.currentTarget.parentNode.parentNode).find('input:hidden')[1].value
     let weeklyStatus = $(event.currentTarget.parentNode.parentNode).find('input')
-    for(let i = 0; i < weeklyStatus.length; i++){
-      console.log(`${i}: ${weeklyStatus.eq(i).val()}`)
-    }
-    console.log(weeklyStatus)
-    console.log(statusId)
-    console.log(weeklyStatus.eq(1).val())
-    
-  //   event.preventDefault()
-  //   axios.put(`/api/weeklystatus/update/${statusId}`, {
-  //    tester: weeklyStatus.first().val(),
-  //    beginDate: weeklyStatus.eq(1).val() ,
-  //    endDate: weeklyStatus.eq(2).val() ,
-  //    bugsCreated: weeklyStatus.eq(4).val() ,
-  //    ticketsRejected: weeklyStatus.eq(5).val() ,
-  //    stories: weeklyStatus.eq(3).val() ,
-  //    blockers: weeklyStatus.eq(6).val() ,
-  //    general: weeklyStatus.eq(7).val() ,
-  //    nextWeek: weeklyStatus.eq(8).val() ,
-  //    testCases: weeklyStatus.eq(9).val() 
-  //  })
-  //  .then(response => {})
-  //  .catch(err => console.log(err))
+    event.preventDefault()
+    axios.put(`/api/weeklystatus/update/${statusId}`, {
+     //tester: weeklyStatus.first().val(),
+     beginDate: weeklyStatus.eq(1).val() ,
+     endDate: weeklyStatus.eq(2).val() ,
+     bugsCreated: weeklyStatus.eq(4).val() ,
+     ticketsRejected: weeklyStatus.eq(5).val() ,
+     stories: weeklyStatus.eq(3).val() ,
+     blockers: weeklyStatus.eq(6).val() ,
+     general: weeklyStatus.eq(7).val() ,
+     nextWeek: weeklyStatus.eq(8).val() ,
+     testCases: weeklyStatus.eq(9).val() 
+   })
+   .then(response => {})
+   .catch(err => console.log(err))
 
 });
   
