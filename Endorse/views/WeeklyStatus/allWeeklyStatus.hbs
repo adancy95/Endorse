@@ -1,7 +1,7 @@
 
 <h1>Weekly Status Feed</h1>
-
 {{#each statuses}}
+  
   <div class="card">
     <div class="card-header">
       <h5>{{this.tester.firstName}} {{this.tester.lastName}} Weekly Status for the week of {{this.formattedBeginDate}} - {{this.formattedEndDate}}</h5>
@@ -22,17 +22,84 @@
       <p class="card-text">{{this.general}}</p>
       <h6 class="card-title">Next Week</h6>
       <p class="card-text">{{this.nextWeek}}</p>
+      <h6 class="card-title">Test Cases</h6>
+      <p class="card-text">{{this.testCases}}</p>
+      
       
     </div>
     <div class="card-body">
-      <form action="">
-        <input type="hidden" name="status-id" id="status-id" value="{{this._id}}">
-        <a href="#" class="card-link" id="edit-status">Edit Status</a>
-        <a href="#" class="card-link" id="delete-status">Delete Status</a>
+      <form id="status" action="">
+        <a href="#" data-id="{{this._id}}" class="card-link" id="edit-status" data-toggle="modal" data-target="#editStatusModal">Edit Status</a>
+        <a href="#" data-id="{{this._id}}"  class="card-link" id="delete-status">Delete Status</a>
       </form>
     </div>
   </div>
   <hr>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="editStatusModal" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="editStatusModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editStatusModalLabel">Edit Weekly Status</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="edit-weekly-status">
+              <div class="form-group">
+                <input type="hidden" name="tester">
+              </div>
+              <div class="form-group">
+                <label for="beginDate">Week Start Date</label>
+                <input type="date" name="beginDate" >
+              </div>
+              <div class="form-group">
+                <label for="endDate">Week End Date</label>
+                <input type="date" name="endDate" >
+              </div>
+              <div class="form-group">
+                <label for="stories">Stories Tested</label>
+                <input type="text" name="stories" >
+              </div>
+              <div class="form-group">
+                <label for="bugsCreated">Bugs Opened</label>
+                <input type="text" name="bugsCreated" >
+              </div>
+              <div class="form-group">
+                <label for="ticketsRejected">Tickets Rejected</label>
+                <input type="text" name="ticketsRejected" >
+              </div>
+              <div class="form-group">
+                <label for="blockers">Blockers</label>
+                <input type="text" name="blockers" >
+              </div>
+              <div class="form-group">
+                <label for="general">General(Can include PTO time, meetings, left early, etc.)</label>
+                <input type="text" name="general" >
+              </div>
+              <div class="form-group">
+                        <label for="nextWeek">Next Week</label>
+                        <input type="text" name="nextWeek">
+              </div>
+              <div class="form-group">
+                <label for="testCases">Test Cases</label>
+                <input type="text" name="testCases" >
+              </div>
+              <div class="form-group">
+                <input type="hidden" name="id">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" id="save-edits" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div> 
 {{/each}}
 
 
