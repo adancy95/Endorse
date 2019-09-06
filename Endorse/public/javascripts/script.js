@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
       stories: weeklyStatus.eq(3).val() ,
       blockers: weeklyStatus.eq(6).val() ,
       general: weeklyStatus.eq(7).val() ,
-      nextWeek: weeklyStatus.eq().val() ,
-      testCases: weeklyStatus.eq(8).val() 
+      nextWeek: weeklyStatus.eq(8).val() ,
+      testCases: weeklyStatus.eq(9).val() 
     })
     .then(response => {})
     .catch(err => console.log(err))
