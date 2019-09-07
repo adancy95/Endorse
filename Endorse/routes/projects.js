@@ -2,14 +2,36 @@ const express  = require("express");
 const router   = express.Router();
 const Projects = require('../models/project');
 const TestArtifacts = require('../models/testartifact');
+const User = require("../models/user");
+const WeeklyStatus = require('../models/weeklyStatus');
+const moment = require('moment')
 
 router.get('/projects', (req, res, next) => {
+  
   Projects.find()
   .then(projects => {
-    res.render('Projects/allProjects', {projects})
+      res.render('Projects/allProjects', {projects})
   })
   .catch(err => next(err))
 })
+
+router.get('/projects/:id', (req, res, next) => {
+  User.find({'project': req.params.id}, '_id').distinct('_id')
+  .then(usersAssociatedWithProject =>{
+      WeeklyStatus.find({tester: {$in: usersAssociatedWithProject}}).populate('tester').sort({updated_at: -1})
+      .then(statuses => {
+        statuses.map(status => {
+          status.formattedBeginDate = moment(status.beginDate).format("MMMM Do, YYYY"); 
+          status.formattedEndDate = moment(status.endDate).format("MMMM Do, YYYY")
+          status.formattedUpdatedDate = moment(status.updated_at).format("MMMM Do, YYYY")
+        })
+        res.render('WeeklyStatus/allWeeklyStatus', {statuses})
+      })
+      .catch(err => next(err))
+  })
+  .catch(err => next(err))
+})
+
 
 router.get('/api/projects', (req, res, next) => {
   Projects.find()
