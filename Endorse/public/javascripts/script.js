@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
       nextWeek: weeklyStatus.eq(8).val() ,
       testCases: weeklyStatus.eq(9).val() 
     })
-    .then(response => {})
+    .then(response => {$('#create-weekly-status')[0].reset()})
     .catch(err => console.log(err))
 
   });
