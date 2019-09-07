@@ -14,6 +14,7 @@ const User         = require("./models/user");
 const passport     = require("passport");
 const LocalStrategy= require("passport-local").Strategy;
 const flash        = require("connect-flash");
+const methodOverride = require('method-override')
 
 
 mongoose
@@ -35,6 +36,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(methodOverride('_method'))
 
 // Express View engine setup
 
@@ -54,6 +56,8 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
 app.locals.title = '#daWeekly -- If it isn’t written down, it didn’t happen.';
+
+
 
 app.use(session({
   secret: "endorse",
