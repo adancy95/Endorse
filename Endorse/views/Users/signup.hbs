@@ -16,6 +16,12 @@
     <label for="email">Email Address</label>
     <input type="email" name="email" id="email">
 
+    
+      {{#each projects}}
+      Projects: <input type="checkbox" value="{{this._id}}" name="project">{{this.projectName}}</input>
+      {{/each}}
+    
+
     <button>Sign Up</button>
   
   </form>
