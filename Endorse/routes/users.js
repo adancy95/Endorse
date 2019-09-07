@@ -13,6 +13,7 @@ router.get('/users', (req, res, next) => {
   .catch(err => next(err))
 })
 
+
 router.get('/signup', (req, res, next) => {
   Projects.find()
   .then( projects => {
@@ -56,12 +57,26 @@ router.get("/logout", (req, res) => {
 });
 
 router.get('/userprofile', (req, res, next) => {
-  User.findById(req.user._id)
-  .then(user => {res.render("users/userProfile", {user})})
-  .catch( err => {next(err)})
+  Projects.find()
+  .then( projects => {
+    User.findById(req.user._id)
+      .then(user => {
+        user.project.forEach((projectId)=>{
+          projects.forEach(project => {
+            if(project._id.equals(projectId)){
+              project.included = true;
+            }
+          });
+        })
+          res.render("users/userProfile", {user, projects})
+      })
+    .catch( err => {next(err)})
+  })
+  .catch(err => next(err))
+  
 })
 
-router.post('/editUser', (req, res, next) => {
+router.put('/editUser', (req, res, next) => {
   User.findByIdAndUpdate(req.user._id, req.body)
   .then(user => {res.redirect('/userprofile')})
   .catch( err => next(err))
