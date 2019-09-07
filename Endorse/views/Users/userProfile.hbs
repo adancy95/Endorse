@@ -1,7 +1,8 @@
 <h2>Hello {{user.username}}!</h2>
 
 <div>
-  <form action="/editUser" method="POST">
+  <form action="/editUser?_method=PUT" method="POST">
+    <input type="hidden" name="_method" value="PUT">
 
     <label for="username">Username</label>
     <input type="username" name="username" id="username" value="{{user.username}}">
@@ -18,7 +19,27 @@
     <label for="email">Email Address</label>
     <input type="email" name="email" id="email" value="{{user.email}}">
 
+    {{#each projects}}
+      {{#if this.included}}
+         <div>
+        <input type="checkbox" value="{{this._id}}" name="project" checked="checked">
+        {{this.projectName}}
+        </div>
+
+      {{else}}
+
+        <div>
+        <input type="checkbox" value="{{this._id}}" name="project">
+        {{this.projectName}}
+        </div>
+      {{/if}}
+    {{/each}}
+
+    
+
     <button>Edit Profile</button>
+
+    
   
   </form>
 </div>
