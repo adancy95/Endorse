@@ -19,10 +19,10 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/weeklystatus">Weekly Status Feed <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/weeklystatus/all">Weekly Status Feed <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">My Weekly Statuses</a>
+          <a class="nav-link" href="/weeklystatus/user">My Weekly Statuses</a>
         </li>
         <li class="nav-item">
           <!-- Button trigger modal -->
@@ -73,6 +73,10 @@
                         <label for="general">General(Can include PTO time, meetings, left early, etc.)</label>
                         <input type="text" name="general">
                       </div>
+                       <div class="form-group">
+                        <label for="nextWeek">Next Week</label>
+                        <input type="text" name="nextWeek">
+                      </div>
                       <div class="form-group">
                         <label for="testCases">Test Cases</label>
                         <input type="text" name="testCases">
@@ -116,7 +120,7 @@
         <nav class="navbar fixed-left navbar-dark bg-dark">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link" href="#" id="project-links"><h5>Projects</h5></a>
+              <a class="nav-link" href="/projects" id="project-links"><h5>Projects</h5></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#" id="user-links"><h5>Users</h5></a>
