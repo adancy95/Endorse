@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   axios.get('/api/projects')
   .then(projects => {
     projects.data.forEach(project => {
-      $('#project-links').after(`<a class="nav-link" href="#">${project.projectName}</a>`)
+      $('#project-links').after(`<a class="nav-link" href='/projects/${project._id}'>${project.projectName}</a>`)
     });
   })
   .catch(err => console.log(err))
