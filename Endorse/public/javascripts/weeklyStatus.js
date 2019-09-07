@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let statusId = event.currentTarget.getAttribute('data-id');
     axios.get(`/api/weeklystatus/status/${statusId}`)
     .then(status => {
+      $('#edit-weekly-status input[name="tester"]').val(status.data.status.tester);
       $('#edit-weekly-status input[name="beginDate"]').val(status.data.beginDateVal);
       $('#edit-weekly-status input[name="endDate"]').val(status.data.endDateVal);
       $('#edit-weekly-status input[name="stories"]').val(status.data.status.stories);
@@ -19,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
       $('#edit-weekly-status input[name="id"]').val(status.data.status._id);
 
     })
-    .catch(err => console.log(next))
+    .catch(err => console.log(err))
     
     $('#editStatusModal').on('shown.bs.modal', function () {
     
@@ -28,13 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
  });
 
  $(document).on("click", "#save-edits", function(event){
-   console.log("Save Changes was clicked")
     event.preventDefault()
     let statusId = $(event.currentTarget.parentNode.parentNode).find('input:hidden')[1].value
     let weeklyStatus = $(event.currentTarget.parentNode.parentNode).find('input')
     event.preventDefault()
     axios.put(`/api/weeklystatus/update/${statusId}`, {
-     //tester: weeklyStatus.first().val(),
+     tester: weeklyStatus.first().val(),
      beginDate: weeklyStatus.eq(1).val() ,
      endDate: weeklyStatus.eq(2).val() ,
      bugsCreated: weeklyStatus.eq(4).val() ,
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
    .then(response => {})
    .catch(err => console.log(err))
 
-});
+   });
   
   $(document).on("click", "#delete-status", function(event){
     let statusId = event.currentTarget.getAttribute('data-id');
