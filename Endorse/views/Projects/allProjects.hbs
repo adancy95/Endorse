@@ -3,9 +3,9 @@
 
 
 
-<form action="/projects/create" method="POST">
+<form action="" method="POST">
         Project Name: <input type="text" name="projectName" id="project-name">
-        <input type="submit" value="Add Project">
+        <input type="submit" value="Add Project" id="addProjectBtn">
 </form>
 
 
@@ -18,31 +18,41 @@
         <div class="card-body">
           <h5 class="card-title"><a href='/projects/{{this._id}}' class="card-link">{{this.projectName}}</a></h5>
           <hr>
-          <a href="#" class="card-link">Edit Project</a>
-          <a href="#" class="card-link">Delete Project</a>
+          <a href="#" class="card-link" data-id="{{this._id}}" data-toggle="modal" id="editProjectBtn" data-target="#editProject">Edit Project</a>
+          <a href="#" class="card-link" data-id="{{this._id}}" id="delete-project">Delete Project</a>
         </div>
         <div class="card-footer">
           <small class="text-muted">Last updated {{this.updated_at}}</small>
         </div>
       </div>
     </div>
-
-    
-  {{!-- <ul>
-    <li>
-      <form method="GET"> 
-        <a href="/Projects/{{this._id}}">{{this.projectName}}</a>
-      </form>
-       <form action="/editproject/{{this._id}}" method="POST">
-        Project Name:  <input type="text" name="projectName" value="{{this.projectName}}">
-        <input type="submit" value="Edit Project">
-       </form>
-        <form action="/deleteproject/{{this._id}}" method="POST">
-        <input type="submit" value="Delete Project">
-       </form>
-
-    </li>
-  </ul> --}}
   {{/each}}
 </div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="editProject" tabindex="-1" role="dialog" aria-labelledby="editProjectLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Edit Project</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="POST">
+         Project Name: <input type="text" name="projectName" id="project-name">
+                        <input type="hidden" name="id">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="saveProjectChanges">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+ <script src="/javascripts/project.js"></script>
