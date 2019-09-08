@@ -42,7 +42,7 @@ router.get('/api/projects', (req, res, next) => {
 })
 
 router.get('/api/projects/:id', (req, res, next) => {
-  TestArtifacts.find({project: req.params.id }).populate('project')
+  Projects.findById(req.params.id)
   .then(artifacts => {
     res.json(artifacts)
   })
