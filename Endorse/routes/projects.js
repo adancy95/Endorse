@@ -34,7 +34,7 @@ router.get('/projects/:id', (req, res, next) => {
 
 
 router.get('/api/projects', (req, res, next) => {
-  Projects.find()
+  Projects.find().sort({projectName: -1})
   .then(projects => {
     res.json(projects)
   })
