@@ -9,7 +9,7 @@ const uploadMiddleWare = require('../config/cloudinary');
 
 
 router.get('/users', (req, res, next) => {
-  User.find()
+  User.find().sort({firstName: -1})
   .then(users => res.json(users))
   .catch(err => next(err))
 })
