@@ -6,3 +6,63 @@ body {
 a {
   color: #00B7FF;
 }
+
+//Left Nav Bar
+.users-nav {
+  display: flex;
+}
+// Landing Page
+
+.background-image {
+  background-image: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7)
+    ),
+    url("/images/computerandcalendar.jpg");
+ background-size: cover;
+ width: 100%;
+ height: 800px;
+ background-repeat: no-repeat;
+ 
+
+}
+
+.mid {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  color: white;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.mid h2 {
+  font-size: 7rem;
+
+}
+
+.mid h6 {
+  font-size: 2rem;
+}
+
+// users
+
+.user-img {
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+
+
+// status card
+
+.status-card {
+  display: flex;
+}
+
