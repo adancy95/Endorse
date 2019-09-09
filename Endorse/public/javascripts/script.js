@@ -37,7 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
   axios.get('/users')
   .then(users => {
     users.data.forEach(user => {
-      $('#user-links').after(`<a class="nav-link" href="/weeklystatus/${user._id}">${user.firstName} ${user.lastName}</a>`)
+      $('#user-links').after(`
+      <div class="users-nav"> 
+        <img src="${user.userImage}" alt="profilepic" class="user-img">
+        <a class="nav-link" href="/weeklystatus/${user._id}">${user.firstName} ${user.lastName}</a>
+      </div>
+      <hr>
+      `)
     })
   })
   .catch(err => console.log(err))
