@@ -4,7 +4,13 @@
   
   <div class="card">
     <div class="card-header">
-      <h5>{{this.tester.firstName}} {{this.tester.lastName}} Weekly Status for the week of {{this.formattedBeginDate}} - {{this.formattedEndDate}}</h5>
+      <div class="status-card">
+        <img src="{{this.tester.userImage}}" alt="profilepic" class="user-img">
+        <div>
+           <h5>{{this.tester.firstName}} {{this.tester.lastName}} </h5>
+           <h5>Weekly Status for the week of {{this.formattedBeginDate}} - {{this.formattedEndDate}}</h5>
+        </div>
+      </div>
     </div>
      <div>
       <p><i>Last Updated: {{this.formattedUpdatedDate}}</i></p>
@@ -30,14 +36,14 @@
     <div class="card-body">
       <form id="status" action="">
         <a href="#" data-id="{{this._id}}" class="card-link" id="edit-status" data-toggle="modal" data-target="#editStatusModal">Edit Status</a>
-        <a href="#" data-id="{{this._id}}"  class="card-link" id="delete-status">Delete Status</a>
+        <a href="#" data-id="{{this._id}}"  class="card-link" id="delete-status" >Delete Status</a>
       </form>
     </div>
   </div>
   <hr>
 
 
-    <!-- Modal -->
+    <!-- Edit Modal -->
     <div class="modal fade" id="editStatusModal" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="editStatusModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -100,6 +106,8 @@
         </div>
       </div>
     </div> 
+
+
 {{/each}}
 
 
