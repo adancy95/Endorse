@@ -5,6 +5,7 @@ const passport = require("passport");
 const async    = require('async');
 const User     = require("../models/user");
 const Projects = require('../models/project');
+const uploadMiddleWare = require('../config/cloudinary');
 
 
 router.get('/users', (req, res, next) => {
@@ -23,17 +24,22 @@ router.get('/signup', (req, res, next) => {
   
 })
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', uploadMiddleWare.single('userImage'), (req, res, next) => {
   const salt = bcrypt.genSaltSync(12);
   const hashPass = bcrypt.hashSync(req.body.password, salt)
 
+  let image = '/images/noImage.jpg';
+    if(req.file){
+      image =  req.file.url;
+    }
   User.create({
     username: req.body.username,
     password: hashPass,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
-    project: req.body.project
+    project: req.body.project,
+    userImage: image
   })
   .then(() => res.redirect('/login'))
   .catch( err => {next(err)})
@@ -76,7 +82,11 @@ router.get('/userprofile', (req, res, next) => {
   
 })
 
-router.put('/editUser', (req, res, next) => {
+router.put('/editUser', uploadMiddleWare.single('userImage'), (req, res, next) => {
+  let image = '/images/noImage.jpg';
+  if(req.file){
+    let image =  req.file.url;
+  }
   User.findByIdAndUpdate(req.user._id, req.body)
   .then(user => {res.redirect('/userprofile')})
   .catch( err => next(err))
