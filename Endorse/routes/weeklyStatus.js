@@ -4,6 +4,7 @@ const WeeklyStatus = require('../models/weeklyStatus');
 const TestArtifacts = require('../models/testartifact');
 const moment = require('moment')
 
+
 router.get('/weeklystatus/:searchType', (req, res, next) => {
   let searchQuery;
   if(req.params.searchType === 'all'){
@@ -89,6 +90,7 @@ router.delete('/api/weeklystatus/delete/:id', (req, res, next) => {
   })
   .catch(err => next(err))
 })
+
 
 
 
