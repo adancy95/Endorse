@@ -18,7 +18,7 @@ router.get('/users', (req, res, next) => {
 router.get('/signup', (req, res, next) => {
   Projects.find()
   .then( projects => {
-    res.render('users/signup', {projects})
+    res.render('Users/signup', {projects})
   })
   .catch(err => next(err))
   
@@ -46,7 +46,7 @@ router.post('/signup', uploadMiddleWare.single('userImage'), (req, res, next) =>
 })
 
 router.get('/login', (req, res, next) => {
-  res.render('users/login')
+  res.render('Users/login')
 })
 
 router.post("/login", passport.authenticate("local", {
@@ -74,7 +74,7 @@ router.get('/userprofile', (req, res, next) => {
             }
           });
         })
-          res.render("users/userProfile", {user, projects})
+          res.render("Users/userProfile", {user, projects})
       })
     .catch( err => {next(err)})
   })
