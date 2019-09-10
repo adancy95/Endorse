@@ -18,7 +18,7 @@ const methodOverride = require('method-override')
 
 
 mongoose
-  .connect(process.env.MONGODB_URI, {useNewUrlParser: true})
+  .connect(process.env.MONGOLAB_BLACK_URI, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
