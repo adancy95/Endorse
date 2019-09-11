@@ -9,10 +9,11 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="/stylesheets/style.css" />
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Oswald|Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">#daWeekly</a>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white border-bottom border-warning">
+    <a class="navbar-brand" href="/"><span class="brand-name"><img id="logo" src="/images/quill-drawing-a-line (1).png" width="30" height="30" class="d-inline-block align-top" alt="">daWeekly</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -20,14 +21,14 @@
       <ul class="navbar-nav mr-auto">
         {{#if currentUser}}
         <li class="nav-item active">
-          <a class="nav-link" href="/weeklystatus/all">Weekly Status Feed <span class="sr-only">(current)</span></a>
+          <a class="nav-link text-warning" href="/weeklystatus/all">Weekly Status Feed <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/weeklystatus/user">My Weekly Statuses</a>
+          <a class="nav-link text-warning" href="/weeklystatus/user">My Weekly Statuses</a>
         </li>
         <li class="nav-item">
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#exampleModal">
             Create Weekly Status
           </button>
 
@@ -86,7 +87,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id="save-status" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                    <button type="button" id="save-status" class="btn btn-warning" data-dismiss="modal">Save changes</button>
                   </div>
                 </div>
               </div>
@@ -94,7 +95,7 @@
         </li>
          {{else}}
          <li class="nav-item active">
-          <a class="nav-link" href="/weeklystatus/all">Weekly Status Feed <span class="sr-only">(current)</span></a>
+          <a class="nav-link text-warning" href="/weeklystatus/all">Weekly Status Feed <span class="sr-only">(current)</span></a>
         </li>
         {{/if}}
 
@@ -103,20 +104,20 @@
         <ul class="navbar-nav mr-auto ">
           {{#if currentUser}}
             <li class="nav-item">
-              <a class="nav-link" href="/logout">Logout</a>
+              <a class="nav-link text-warning" href="/logout">Logout</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ">
               <img src="{{currentUser.userImage}}" alt="profilepic" class="user-img">
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/userprofile"><h6>{{currentUser.username}}</h6></a>
+              <a class="nav-link text-warning" href="/userprofile"><h6>{{currentUser.username}}</h6></a>
             </li>
           {{else}}
             <li class="nav-item active">
-              <a class="nav-link" href="/login">Login</a>
+              <a class="nav-link text-warning" href="/login">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/signup">Signup</a>
+              <a class="nav-link text-warning" href="/signup">Sign Up</a>
             </li>
           {{/if}}
          
@@ -126,19 +127,19 @@
   </nav>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-2">
-        <nav class="navbar fixed-left navbar-dark bg-dark">
-          <ul class="nav flex-column">
+      <div class="col-2 sticky-top">
+        <nav class="navbar fixed-left navbar-light bg-white left-nav">
+          <ul class="nav flex-column left-nav-links">
             <li class="nav-item">
-              <a class="nav-link" href="/projects" id="project-links"><h5>Projects</h5></a>
+              <a class="nav-link mid" href="/projects" id="project-links"><h5>Projects</h5></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" id="user-links"><h5>Users</h5></a>
+              <a class="nav-link mid" href="#" id="user-links"><h5>Users</h5></a>
             </li>
           </ul>
         </nav>
       </div>
-      <div class="col-10">
+      <div class="col-10 main-body">
         {{{body}}}
       </div>
     </div>

@@ -1,8 +1,16 @@
 body {
   padding: 70px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #FAFAFA;
 }
 
+.content-body {
+  background-color: white;
+}
+
+.main-body {
+  margin-top: 50px;
+}
 a {
   color: #00B7FF;
 }
@@ -11,42 +19,60 @@ a {
 .users-nav {
   display: flex;
 }
+.left-nav{
+  margin-left: -100px;
+  margin-top: -10px;
+  min-height: 100vh;
+  min-width: 250px;
+  max-width: 250px;
+}
+
+.left-nav-links {
+  padding-left: 1em;
+  margin-top: -30vh;
+}
+
+.navbar-brand {
+  font-family: 'Pacifico', cursive;
+  color: #e65100;
+}
+
+.brand-name{
+  font-family: 'Pacifico', cursive;
+  color: #e65100;
+}
+
 // Landing Page
 
-.background-image {
-  background-image: 
-    linear-gradient(
-      rgba(0, 0, 0, 0.7),
-      rgba(0, 0, 0, 0.7)
-    ),
-    url("/images/computerandcalendar.jpg");
- background-size: cover;
- width: 100%;
- height: 800px;
- background-repeat: no-repeat;
- 
 
+.index-content {
+  display: flex;
+}
+
+#index-img {
+  width: 100%;
+  height: 600px;
 }
 
 .mid {
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
-  color: white;
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  color: #e65100;
+  padding-top: 10%;
 
 }
 
 .mid h2 {
   font-size: 7rem;
+  font-family: 'Pacifico', cursive;
+  
 
 }
 
 .mid h6 {
-  font-size: 2rem;
+  font-size: 1rem;
+  color:black;
+  font-weight: 200;
 }
 
 // users
@@ -58,6 +84,14 @@ a {
   border-radius: 50%;
 }
 
+.user-profile-img {
+  vertical-align: middle;
+ align-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border:3px solid #e65100;
+}
 
 
 // status card
@@ -65,4 +99,9 @@ a {
 .status-card {
   display: flex;
 }
+
+.delete-btn {
+ color: #e65100;
+}
+
 

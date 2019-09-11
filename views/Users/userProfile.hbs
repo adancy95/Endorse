@@ -1,49 +1,52 @@
-<h2>Hello {{user.username}}!</h2>
 
-<div>
-  <form action="/editUser?_method=PUT" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="_method" value="PUT">
 
-    <img src="{{user.userImage}}" class="user-img">
-    <label for="userImage">Edit Image</label>
-    <input type='file' name='userImage' value="{{user.userImage}}"/>
-
-    <label for="username">Username</label>
-    <input type="username" name="username" id="username" value="{{user.username}}">
-
-    {{!-- <label for="password">Password</label>
-    <input type="password" name="password" id="password"> --}}
-
-    <label for="firstName">First Name</label>
-    <input type="text" name="firstName" id="first-name" value="{{user.firstName}}">
-
-    <label for="lastName">Last Name</label>
-    <input type="text" name="lastName" id="last-name" value="{{user.lastName}}">
-
-    <label for="email">Email Address</label>
-    <input type="email" name="email" id="email" value="{{user.email}}">
-
-    {{#each projects}}
-      {{#if this.included}}
-         <div>
-        <input type="checkbox" value="{{this._id}}" name="project" checked="checked">
-        {{this.projectName}}
-        </div>
-
-      {{else}}
-
-        <div>
-        <input type="checkbox" value="{{this._id}}" name="project">
-        {{this.projectName}}
-        </div>
-      {{/if}}
-    {{/each}}
-
+<form class=" card w-50 text-center border border-light p-5 bg-white" action="/editUser?_method=PUT" method="POST" enctype="multipart/form-data">
+ <input type="hidden" name="_method" value="PUT">
+ <div class="d-flex justify-content-center flex-column">
+    <div class=""> <p class="h4 mb-4">Edit Profile</p></div>
+    <div class="p-2 mb-4"> <img src="{{user.userImage}}" class="user-profile-img" ></div>
+ </div>
+    <div class="custom-file mb-4">
+      <label class="custom-file-label" for="userImage">Upload Profile Image</label>
+    <input type="file" class="custom-file-input" id="userImage" name='userImage'>
+    </div>
     
+ 
 
-    <button>Edit Profile</button>
+    <input type="username" id="username" class="form-control mb-4" placeholder="Username" name="username" value="{{user.username}}">
+    <input type="text" name="firstName" id="first-name" class="form-control mb-4" placeholder="First Name" value="{{user.firstName}}">
+    <input type="text" name="lastName" id="last-name" class="form-control mb-4" placeholder="Last Name" value="{{user.lastName}}">
+    <input type="email" name="email" id="email" class="form-control mb-4" placeholder="Email" value="{{user.email}}">
 
-    
-  
-  </form>
-</div>
+   
+    <ul class="list-group">
+       <li class="list-group-item">
+        Projects:
+        {{#each projects}}
+          {{#if this.included}}
+            <div>
+            <input type="checkbox" value="{{this._id}}" name="project" checked="checked">
+            {{this.projectName}}
+            </div>
+
+          {{else}}
+
+            <div>
+            <input type="checkbox" value="{{this._id}}" name="project">
+            {{this.projectName}}
+            </div>
+          {{/if}}
+        {{/each}}
+      </li>
+  </ul>
+               
+       
+      
+
+    <button class="btn btn-warning btn-block my-4" type="submit">Edit Profile</button>
+
+</form>
+
+
+
+

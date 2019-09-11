@@ -1,32 +1,46 @@
-<div>
-  <h3>Projects</h3>
+<div class="card border border-light p-5 bg-white">
+  <div class="p-2">
+    <h3 class="brand-name text-xl-left">Projects</h3>
+    <h6 class="text-warning">Use projects to separate weekly statuses by category</h6>
+    <p>Projects are a great way to organize weekly status reports into groups 
+      with similar attributes or characteristics. You can set them up so that 
+      project names clearly indicate the type of content they hold</p>
+  </div>
+  
 
 
 
-<form action="" method="POST">
-        Project Name: <input type="text" name="projectName" id="project-name">
-        <input type="submit" value="Add Project" id="addProjectBtn">
+<form action="" method="POST" class="p-2">
+      <div class="form-row">
+      <div class="form-group col-md-2">
+        <input type="text" name="projectName" id="project-name" class="form-control mb-4" placeholder="Project Name">
+      </div>
+      <div class="form-group col-md-2">
+        <input class="btn btn-sm btn-warning" type="submit" value="Add Project" id="addProjectBtn">
+      </div>
+    </div>
+     
 </form>
 
 
 
   </form>
-  {{#each projects}}
-
-    <div class="card-deck">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title"><a href='/projects/{{this._id}}' class="card-link">{{this.projectName}}</a></h5>
-          <hr>
-          <a href="#" class="card-link" data-id="{{this._id}}" data-toggle="modal" id="editProjectBtn" data-target="#editProject">Edit Project</a>
-          <a href="#" class="card-link" data-id="{{this._id}}" id="delete-project">Delete Project</a>
+  <div class="row p-2">
+    {{#each projects}}
+      
+        <div class="col-sm-3 p-2">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title "><a href='/projects/{{this._id}}' class="card-link text-warning">{{this.projectName}}</a></h5>
+                <hr>
+                <a href="#" class="card-link text-secondary" data-id="{{this._id}}" data-toggle="modal" id="editProjectBtn" data-target="#editProject">Edit Project</a>
+                <a href="#" class="card-link delete-btn" data-id="{{this._id}}" id="delete-project">Delete Project</a>
+            </div>
+          </div>
         </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated {{this.updated_at}}</small>
-        </div>
-      </div>
-    </div>
-  {{/each}}
+    {{/each}} 
+  </div>
+ 
 </div>
 
 

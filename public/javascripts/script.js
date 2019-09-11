@@ -21,7 +21,38 @@ document.addEventListener('DOMContentLoaded', () => {
       nextWeek: weeklyStatus.eq(8).val() ,
       testCases: weeklyStatus.eq(9).val() 
     })
-    .then(response => {$('#create-weekly-status')[0].reset()})
+    .then(response => {$('#create-weekly-status')[0].reset()
+        // axios.get(`/api/weeklystatus/status/${response.data[1]._id}`)
+        // .then(status => {
+        //     `
+        //     <div class="card-body">
+        //     <h6 class="card-title">Stories Tested</h6>
+        //     <p class="card-text">{{this.stories}}</p>
+        //     <h6 class="card-title">Bugs Opened</h6>
+        //     <p class="card-text">{{this.bugsCreated}}</p>
+        //     <h6 class="card-title">Tickets Rejected</h6>
+        //     <p class="card-text">{{this.ticketsRejected}}</p>
+        //     <h6 class="card-title">Blockers</h6>
+        //     <p class="card-text">{{this.blockers}}</p>
+        //     <h6 class="card-title">General</h6>
+        //     <p class="card-text">{{this.general}}</p>
+        //     <h6 class="card-title">Next Week</h6>
+        //     <p class="card-text">{{this.nextWeek}}</p>
+        //     <h6 class="card-title">Test Cases</h6>
+        //     <p class="card-text">{{this.testCases}}</p>
+            
+            
+        //   </div>
+        //   <div class="card-body">
+        //     <form id="status" action="">
+        //       <a href="#" data-id="{{this._id}}" class="card-link" id="edit-status" data-toggle="modal" data-target="#editStatusModal">Edit Status</a>
+        //       <a href="#" data-id="{{this._id}}"  class="card-link" id="delete-status" >Delete Status</a>
+        //     </form>
+        //   </div>
+        //  `
+        // })
+        // .catch(err => console.log(err))
+  })
     .catch(err => console.log(err))
 
   });
@@ -29,7 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
   axios.get('/api/projects')
   .then(projects => {
     projects.data.forEach(project => {
-      $('#project-links').after(`<a class="nav-link" href='/projects/${project._id}'>${project.projectName}</a>`)
+      $('#project-links').after(`<a class="nav-link text-warning" href='/projects/${project._id}'>
+      <img id="" src="../images/quill-drawing-a-line (1).png" width="20" height="20" >
+      ${project.projectName}</a> <hr>`)
     });
   })
   .catch(err => console.log(err))
@@ -40,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
       $('#user-links').after(`
       <div class="users-nav"> 
         <img src="${user.userImage}" alt="profilepic" class="user-img">
-        <a class="nav-link" href="/weeklystatus/${user._id}">${user.firstName} ${user.lastName}</a>
+        <a class="nav-link text-warning " href="/weeklystatus/${user._id}">${user.firstName} ${user.lastName}</a>
       </div>
       <hr>
       `)
@@ -49,5 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
   .catch(err => console.log(err))
   
 
-
+  $(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  })
 }, false);

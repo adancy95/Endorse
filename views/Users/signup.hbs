@@ -1,31 +1,38 @@
-<div>
-  <form action="/signup" method="POST" enctype="multipart/form-data">
 
-    <label for="userImage">Upload Profile Image</label>
-    <input type='file' name='userImage' />
 
-    <label for="username">Username</label>
-    <input type="username" name="username" id="username">
+<form class=" card w-50 text-center border border-light p-5 bg-white" action="/signup" method="POST" enctype="multipart/form-data">
+    <p class="h4 mb-4">Sign Up</p>
 
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password">
-
-    <label for="firstName">First Name</label>
-    <input type="text" name="firstName" id="first-name">
-
-    <label for="lastName">Last Name</label>
-    <input type="text" name="lastName" id="last-name">
-
-    <label for="email">Email Address</label>
-    <input type="email" name="email" id="email">
-
+    <div class="custom-file mb-4">
+      <label class="custom-file-label" for="userImage">Upload Profile Image</label>
+    <input type="file" class="custom-file-input" id="userImage" name='userImage'>
+    </div>
     
-      {{#each projects}}
-      Projects: <input type="checkbox" value="{{this._id}}" name="project">{{this.projectName}}</input>
-      {{/each}}
-    
+ 
 
-    <button>Sign Up</button>
-  
-  </form>
-</div>
+    <input type="username" id="username" class="form-control mb-4" placeholder="Username" name="username">
+    <input type="password" id="password" class="form-control mb-4" placeholder="Password" name="password">
+    <input type="text" name="firstName" id="first-name" class="form-control mb-4" placeholder="First Name">
+    <input type="text" name="lastName" id="last-name" class="form-control mb-4" placeholder="Last Name">
+    <input type="email" name="email" id="email" class="form-control mb-4" placeholder="Email">
+
+   
+    <ul class="list-group">
+       <li class="list-group-item">
+        Projects:
+        {{#each projects}}
+        <input type="checkbox"  value="{{this._id}}" name="project" id="project" >
+        <label  for="project">{{this.projectName}}</label>
+        {{/each}}
+      </li>
+  </ul>
+               
+       
+      
+
+    <button class="btn btn-warning btn-block my-4" type="submit">Sign Up</button>
+
+    <p>Already a member?
+        <a class="text-warning" href="/login">Login</a>
+    </p>
+</form>
