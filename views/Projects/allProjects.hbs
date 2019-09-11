@@ -1,6 +1,6 @@
 <div class="card border border-light p-5 bg-white">
   <div class="p-2">
-    <h3 class="brand-name text-xl-left">Projects</h3>
+    <h1 class="brand-name mb-4">Projects</h1>
     <h6 class="text-warning">Use projects to separate weekly statuses by category</h6>
     <p>Projects are a great way to organize weekly status reports into groups 
       with similar attributes or characteristics. You can set them up so that 
@@ -29,7 +29,7 @@
     {{#each projects}}
       
         <div class="col-sm-3 p-2">
-          <div class="card">
+          <div class="card ">
             <div class="card-body">
               <h5 class="card-title "><a href='/projects/{{this._id}}' class="card-link text-warning">{{this.projectName}}</a></h5>
                 <hr>
