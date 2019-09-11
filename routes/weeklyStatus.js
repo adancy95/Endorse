@@ -19,7 +19,7 @@ router.get('/weeklystatus/:searchType', (req, res, next) => {
     statuses.map(status => {
       status.formattedBeginDate = moment(status.beginDate).format("MMMM Do, YYYY"); 
       status.formattedEndDate = moment(status.endDate).format("MMMM Do, YYYY")
-      status.formattedUpdatedDate = moment(status.updated_at).format("MMMM Do, YYYY")
+      status.formattedUpdatedDate = moment(status.updated_at).format("MMMM Do YYYY, h:mm a")
     });
     res.render('WeeklyStatus/allWeeklyStatus', {statuses})
   })
