@@ -1,13 +1,14 @@
-<div>
-  <form action="/login" method="POST">
+
+
+<form class=" card w-50 text-center border border-light p-5 bg-white" action="/login" method="POST">
+    <p class="h4 mb-4">Sign in</p>
+    <input type="username" id="username" class="form-control mb-4" placeholder="Username" name="username">
+    <input type="password" id="password" class="form-control mb-4" placeholder="Password" name="password">
+
+    <button class="btn btn-warning btn-block my-4" type="submit">Sign in</button>
     
-    <label for="username">Username</label>
-    <input type="username" name="username" id="username">
+    <p>Not a member?
+        <a class="text-warning" href="/signup">Signup</a>
+    </p>
+</form>
 
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password">
-
-    <button>Login</button>
-  
-  </form>
-</div>
