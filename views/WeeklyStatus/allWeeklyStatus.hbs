@@ -1,10 +1,76 @@
-<div class="p-2">
-  <h1>Weekly Status Feed</h1>
+
+<div class="container py-2 border border-light p-5 bg-white">
+    <h1 class="font-weight-light text-center py-3 brand-name">Weekly Status Feed</h1>
+
+    {{#each statuses}}
+    <!-- timeline item 1 -->
+    <div class="row">
+        <!-- timeline item 1 left dot -->
+        <div class="col-auto text-center flex-column d-none d-sm-flex">
+            <div class="row h-50">
+                <div class="col">&nbsp;</div>
+                <div class="col">&nbsp;</div>
+            </div>
+            <h5 class="m-2">
+                {{!-- <span class="badge badge-pill bg-light border">&nbsp;</span> --}}
+                 <img src="{{this.tester.userImage}}" alt="profilepic" class="user-img">
+            </h5>
+            <div class="row h-75">
+                <div class="col border-right">&nbsp;</div>
+                <div class="col">&nbsp;</div>
+            </div>
+        </div>
+        <!-- timeline item 1 event content -->
+        <div class="col py-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="float-right text-muted">{{this.formattedUpdatedDate}}</div>
+                    <h4 class="card-title text-muted">{{this.tester.firstName}} {{this.tester.lastName}} </h4>
+                    <p class="card-text">Weekly Status for the week of {{this.formattedBeginDate}} - {{this.formattedEndDate}}</p>
+                </div>
+                <button class="btn btn-sm btn-outline-warning" type="button" data-target="#t2_details" data-toggle="collapse">Show Details ▼</button>
+                    <div class="collapse border" id="t2_details">
+                        <div class="p-2">
+                          <div class="card-body">
+                              <h6 class="card-title">Stories Tested</h6>
+                              <p class="card-text">{{this.stories}}</p>
+                              <h6 class="card-title">Bugs Opened</h6>
+                              <p class="card-text">{{this.bugsCreated}}</p>
+                              <h6 class="card-title">Tickets Rejected</h6>
+                              <p class="card-text">{{this.ticketsRejected}}</p>
+                              <h6 class="card-title">Blockers</h6>
+                              <p class="card-text">{{this.blockers}}</p>
+                              <h6 class="card-title">General</h6>
+                              <p class="card-text">{{this.general}}</p>
+                              <h6 class="card-title">Next Week</h6>
+                              <p class="card-text">{{this.nextWeek}}</p>
+                              <h6 class="card-title">Test Cases</h6>
+                              <p class="card-text">{{this.testCases}}</p>
+                            </div>
+                            <div class="card-body">
+                              <form id="status" action="">
+                                <a href="#" data-id="{{this._id}}" class="card-link text-secondary " id="edit-status" data-toggle="modal" data-target="#editStatusModal">Edit Status</a>
+                                <a href="#" data-id="{{this._id}}"  class="card-link delete-btn" id="delete-status" >Delete Status</a>
+                              </form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+    {{/each}}
 </div>
 
-{{#each statuses}}
+
+
+
+       
+
+{{!-- {{#each statuses}}
   
-  <div class="card">
+  <div class="card border border-light p-5 bg-white">
     <div class="card-header">
       <div class="status-card">
         <img src="{{this.tester.userImage}}" alt="profilepic" class="user-img">
@@ -32,8 +98,6 @@
       <p class="card-text">{{this.nextWeek}}</p>
       <h6 class="card-title">Test Cases</h6>
       <p class="card-text">{{this.testCases}}</p>
-      
-      
     </div>
     <div class="card-body">
       <form id="status" action="">
@@ -110,7 +174,7 @@
     </div> 
 
 
-{{/each}}
+{{/each}} --}}
 
 
 
