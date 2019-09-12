@@ -7,7 +7,24 @@ document.addEventListener('DOMContentLoaded', () => {
     axios.post(`/api/projects/create`, {projectName: projectName})
     .then(project => {
       $('#project-name').val("")
-      console.log(project)
+      axios.get(`/api/projects/${project.data._id}`)
+      .then(project => {
+        console.log(project)
+        $("#project-card").append( 
+          `<div class="col-sm-4 p-2">
+            <div class="card ">
+              <div class="card-body">
+                <h5 class="card-title "><a href='/projects/${project.data._id}' class="card-link text-warning">${project.data.projectName}</a></h5>
+                  <hr>
+                  <a href="#" class="card-link text-secondary" data-id="${project.data._id}" data-toggle="modal" id="editProjectBtn" data-target="#editProject">Edit Project</a>
+                  <a href="#" class="card-link delete-btn" data-id="${project.data._id}" id="delete-project">Delete Project</a>
+              </div>
+            </div>
+          </div>
+          `
+        );
+      })
+      .catch(err => console.log(err))
     })
     .catch(err => console.log(err))
  });

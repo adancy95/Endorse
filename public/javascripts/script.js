@@ -1,57 +1,80 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  $('#myModal').on('shown.bs.modal', function () {
+  $('#createModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
     
 
   })
 
   $(document).on("click", "#save-status", function(event){
-     let weeklyStatus = $('#create-weekly-status input')
+     let weeklyStatus = $('#create-weekly-status').serializeArray()
+     console.log(weeklyStatus)
+     
+   
      event.preventDefault()
-     axios.post('/api/weeklystatus/create', {
-      tester: weeklyStatus.first().val(),
-      beginDate: weeklyStatus.eq(1).val() ,
-      endDate: weeklyStatus.eq(2).val() ,
-      bugsCreated: weeklyStatus.eq(4).val() ,
-      ticketsRejected: weeklyStatus.eq(5).val() ,
-      stories: weeklyStatus.eq(3).val() ,
-      blockers: weeklyStatus.eq(6).val() ,
-      general: weeklyStatus.eq(7).val() ,
-      nextWeek: weeklyStatus.eq(8).val() ,
-      testCases: weeklyStatus.eq(9).val() 
-    })
-    .then(response => {$('#create-weekly-status')[0].reset()
-        // axios.get(`/api/weeklystatus/status/${response.data[1]._id}`)
-        // .then(status => {
-        //     `
-        //     <div class="card-body">
-        //     <h6 class="card-title">Stories Tested</h6>
-        //     <p class="card-text">{{this.stories}}</p>
-        //     <h6 class="card-title">Bugs Opened</h6>
-        //     <p class="card-text">{{this.bugsCreated}}</p>
-        //     <h6 class="card-title">Tickets Rejected</h6>
-        //     <p class="card-text">{{this.ticketsRejected}}</p>
-        //     <h6 class="card-title">Blockers</h6>
-        //     <p class="card-text">{{this.blockers}}</p>
-        //     <h6 class="card-title">General</h6>
-        //     <p class="card-text">{{this.general}}</p>
-        //     <h6 class="card-title">Next Week</h6>
-        //     <p class="card-text">{{this.nextWeek}}</p>
-        //     <h6 class="card-title">Test Cases</h6>
-        //     <p class="card-text">{{this.testCases}}</p>
-            
-            
-        //   </div>
-        //   <div class="card-body">
-        //     <form id="status" action="">
-        //       <a href="#" data-id="{{this._id}}" class="card-link" id="edit-status" data-toggle="modal" data-target="#editStatusModal">Edit Status</a>
-        //       <a href="#" data-id="{{this._id}}"  class="card-link" id="delete-status" >Delete Status</a>
-        //     </form>
-        //   </div>
-        //  `
-        // })
-        // .catch(err => console.log(err))
+     axios.post('/api/weeklystatus/create', { weeklyStatus })
+    .then(response => { console.log(response) 
+      $('#create-weekly-status')[0].reset()
+        axios.get(`/api/weeklystatus/status/${response.data[1]._id}`)
+        .then(status => { console.log(status)
+          $('#timeline-card').append(`
+          <!-- timeline item 1 left dot -->
+          <div class="col-auto text-center flex-column d-none d-sm-flex">
+              <div class="row h-50">
+                  <div class="col">&nbsp;</div>
+                  <div class="col">&nbsp;</div>
+              </div>
+              <h5 class="m-2">
+                  {{!-- <span class="badge badge-pill bg-light border">&nbsp;</span> --}}
+                   <img src="{{status.data.userImage}}" alt="profilepic" class="user-img">
+              </h5>
+              <div class="row h-75">
+                  <div class="col border-right">&nbsp;</div>
+                  <div class="col">&nbsp;</div>
+              </div>
+          </div>
+          <!-- timeline item 1 event content -->
+          <div class="col py-2">
+              <div class="card">
+                  <div class="card-body">
+                      <div class="float-right text-muted">${status.data.formattedUpdatedDate}</div>
+                      <h4 class="card-title text-muted">${status.data.firstName} ${status.data.lastName}</h4>
+                      <p class="card-text">Weekly Status for the week of ${status.data.formattedBeginDate} - ${status.data.formattedEndDate}</p>
+                  </div>
+                  <button class="btn btn-sm btn-outline-warning" type="button" data-target="#t2_details" data-toggle="collapse">Show Details ▼</button>
+                      <div class="collapse border" id="t2_details">
+                          <div class="p-2">
+                            <div class="card-body">
+                                <h6 class="card-title">Stories Tested</h6>
+                                <p class="card-text">${status.data.stories}</p>
+                                <h6 class="card-title">Bugs Opened</h6>
+                                <p class="card-text">${status.data.bugsCreated}</p>
+                                <h6 class="card-title">Tickets Rejected</h6>
+                                <p class="card-text">${status.data.ticketsRejected}</p>
+                                <h6 class="card-title">Blockers</h6>
+                                <p class="card-text">${status.data.blockers}</p>
+                                <h6 class="card-title">General</h6>
+                                <p class="card-text">${status.data.general}</p>
+                                <h6 class="card-title">Next Week</h6>
+                                <p class="card-text">${status.data.nextWeek}</p>
+                                <h6 class="card-title">Test Cases</h6>
+                                <p class="card-text">${status.data.testCases}</p>
+                              </div>
+                              <div class="card-body">
+                                <form id="status" action="">
+                                  <a href="#" data-id="${status.data._id}" class="card-link text-secondary " id="edit-status" data-toggle="modal" data-target="#editStatusModal">Edit Status</a>
+                                  <a href="#" data-id="${status.data._id}"  class="card-link delete-btn" id="delete-status" >Delete Status</a>
+                                </form>
+                              </div>
+                              
+                          </div>
+                      </div>
+                  
+              </div>
+          </div>
+          `)
+        })
+        .catch(err => console.log(err))
   })
     .catch(err => console.log(err))
 

@@ -13,7 +13,7 @@
    <script src="https://kit.fontawesome.com/31001bedb4.js"></script>
 </head>
 <body class="content-body">
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light ">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light">
     <a class="navbar-brand" href="/"><span class="brand-name"><img id="logo" src="images/quill-drawing-a-line (1).png" width="30" height="30" class="d-inline-block align-top" alt="">daWeekly</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -29,13 +29,13 @@
         </li>
         <li class="nav-item">
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#createModal">
             Create Weekly Status
           </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
+            <div class="modal fade" id="createModal" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Create Weekly Status</h5>
@@ -51,41 +51,34 @@
                       <div class="form-group">
                         <label for="beginDate">Week Start Date</label>
                         <input type="date" name="beginDate">
-                      </div>
-                      <div class="form-group">
                         <label for="endDate">Week End Date</label>
                         <input type="date" name="endDate">
                       </div>
                       <div class="form-group">
-                        <label for="stories">Stories Tested</label>
-                        <input type="text" name="stories">
+                        <textarea class="form-control mb-4" name="stories" placeholder="Stories Accepted This Week" rows="3"></textarea>
                       </div>
                       <div class="form-group">
-                        <label for="bugsCreated">Bugs Opened</label>
-                        <input type="text" name="bugsCreated">
+                        <textarea class="form-control mb-4" name="bugsCreated" placeholder="Bugs Created This Week" rows="3"></textarea>
                       </div>
                       <div class="form-group">
-                        <label for="ticketsRejected">Tickets Rejected</label>
-                        <input type="text" name="ticketsRejected">
+                        <textarea class="form-control mb-4" name="ticketsRejected" placeholder="Tickets Rejected This Week" rows="3"></textarea>
                       </div>
                       <div class="form-group">
-                        <label for="blockers">Blockers</label>
-                        <input type="text" name="blockers">
+                        <textarea class="form-control mb-4" name="blockers" placeholder="Blockers This Week" rows="3"></textarea>
                       </div>
                       <div class="form-group">
-                        <label for="general">General(Can include PTO time, meetings, left early, etc.)</label>
-                        <input type="text" name="general">
-                      </div>
-                       <div class="form-group">
-                        <label for="nextWeek">Next Week</label>
-                        <input type="text" name="nextWeek">
+                        <textarea class="form-control mb-4" name="general" placeholder="General(Can include PTO time, meetings, left early, etc.)" rows="3"></textarea>
                       </div>
                       <div class="form-group">
-                        <label for="testCases">Test Cases</label>
-                        <input type="text" name="testCases">
+                        <textarea class="form-control mb-4" name="nextWeek" placeholder="Next Week" rows="3"></textarea>
                       </div>
-                   </form>
+                      <div class="form-group">
+                        <textarea class="form-control mb-4" name="testCases" placeholder="Test Cases" rows="3"></textarea>
+                      </div>
+
+                    </form>
                   </div>
+                
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" id="save-status" class="btn btn-warning" data-dismiss="modal">Save changes</button>
@@ -133,7 +126,7 @@
         <h2><img id="logo" src="images/quill-drawing-a-line (1).png" width="60" height="120" class="d-inline-block align-top" alt="">daWeekly</h2>
         <h5>STATUS REPORT</h5>
         <h6>The most effective communication tool you can use to keep your entire team current on the many moving parts of your projects and weekly tasks.</h6>
-        <button type="button" class="btn btn-warning  btn-lg">Signup</button>
+        <a href="/signup" class="btn btn-warning btn-lg" role="button" aria-pressed="true">Sign Up</a>
       </div>
       <div class="col">
         <img src="images/juggleT.png" id="index-img">

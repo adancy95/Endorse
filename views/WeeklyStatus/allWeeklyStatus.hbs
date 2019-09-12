@@ -6,7 +6,7 @@
     <!-- timeline item 1 -->
     <div class="row">
         <!-- timeline item 1 left dot -->
-        <div class="col-auto text-center flex-column d-none d-sm-flex">
+        <div class="col-auto text-center flex-column d-none d-sm-flex"  id="timeline-card">
             <div class="row h-50">
                 <div class="col">&nbsp;</div>
                 <div class="col">&nbsp;</div>
@@ -60,7 +60,59 @@
             </div>
         </div>
     </div>
-    {{/each}}
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editStatusModal" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="editStatusModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editStatusModalLabel">Edit Weekly Status</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="edit-weekly-status">
+              <div class="form-group">
+                <input type="hidden" name="tester" value="{{currentUser._id}}">
+              </div>
+              <div class="form-group">
+                <label for="beginDate">Week Start Date</label>
+                <input type="date" name="beginDate">
+                <label for="endDate">Week End Date</label>
+                <input type="date" name="endDate">
+              </div>
+              <div class="form-group">
+                <textarea class="form-control mb-4" name="stories" placeholder="Stories Accepted This Week" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control mb-4" name="bugsCreated" placeholder="Bugs Created This Week" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control mb-4" name="ticketsRejected" placeholder="Tickets Rejected This Week" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control mb-4" name="blockers" placeholder="Blockers This Week" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control mb-4" name="general" placeholder="General(Can include PTO time, meetings, left early, etc.)" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control mb-4" name="nextWeek" placeholder="Next Week" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control mb-4" name="testCases" placeholder="Test Cases" rows="3"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" id="save-edits" class="btn btn-warning" data-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div> 
+  {{/each}}
 </div>
 
 
