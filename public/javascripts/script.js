@@ -8,7 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   $(document).on("click", "#save-status", function(event){
      let weeklyStatus = $('#create-weekly-status').serializeArray()
-     console.log(weeklyStatus)
+    //  let weeklyStatus =  $("#create-weekly-status").serialize();
+    
+  
      
    
      event.preventDefault()
