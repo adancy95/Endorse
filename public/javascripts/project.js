@@ -32,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
   $(document).on("click", "#editProjectBtn", function(event){
     event.preventDefault()
     let projectId = event.currentTarget.getAttribute('data-id');
+    let projectName = event.currentTarget.parentNode.querySelector('a')
+    console.log(projectName)
     axios.get(`/api/projects/${projectId}`)
     .then(project => {
       $('#editProject input[name="projectName"]').val(project.data.projectName);
@@ -42,22 +44,32 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#editProject').on('shown.bs.modal', function () {
       $('#myInput').trigger('focus')
     })
+
+    $(document).on("click", "#saveProjectChanges", function(event){
+      event.preventDefault()
+      let projectId = $(event.currentTarget.parentNode.parentNode).find('input:hidden').val()
+      let project = $(event.currentTarget.parentNode.parentNode).find('input').val()
+      
+      event.preventDefault()
+      axios.put(`/api/projects/update/${projectId}`, {
+       projectName: project
+     })
+     .then(response => {
+       axios.get(`/api/projects/${projectId}`)
+       .then(projectRes => { 
+         projectName.innerHTML = `${projectRes.data.projectName}`
+        
+        })
+       .catch(err => console.log(err))
+     })
+     .catch(err => console.log(err))
+    
+     });
+    
     
  });
 
- $(document).on("click", "#saveProjectChanges", function(event){
-  event.preventDefault()
-  let projectId = $(event.currentTarget.parentNode.parentNode).find('input:hidden').val()
-  let project = $(event.currentTarget.parentNode.parentNode).find('input').val()
-  event.preventDefault()
-  axios.put(`/api/projects/update/${projectId}`, {
-   projectName: project
- })
- .then(response => {})
- .catch(err => console.log(err))
-
- });
-
+ 
 
  $(document).on("click", "#delete-project", function(event){
   let projectId = event.currentTarget.getAttribute('data-id');
