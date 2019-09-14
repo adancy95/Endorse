@@ -6,7 +6,16 @@ const User = require("../models/user");
 const WeeklyStatus = require('../models/weeklyStatus');
 const moment = require('moment')
 
-router.get('/projects', (req, res, next) => {
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    req.flash('error','Login to add a project')
+    res.redirect('/login')
+  }
+}
+
+router.get('/projects',ensureAuthenticated, (req, res, next) => {
   
   Projects.find()
   .then(projects => {
@@ -49,7 +58,7 @@ router.get('/api/projects/:id', (req, res, next) => {
   .catch(err => next(err))
 })
 
-router.post('/api/projects/create', (req, res, next) => {
+router.post('/api/projects/create', ensureAuthenticated, (req, res, next) => {
   Projects.create({projectName: req.body.projectName})
   .then(project => {
     res.json(project)
@@ -57,7 +66,7 @@ router.post('/api/projects/create', (req, res, next) => {
   .catch(err => next(err))
 })
 
-router.put('/api/projects/update/:id', (req, res, next) => {
+router.put('/api/projects/update/:id', ensureAuthenticated, (req, res, next) => {
   Projects.findByIdAndUpdate(req.params.id, {projectName: req.body.projectName})
   .then(project => {
       res.json([{response: "The project was updated"}, project])
@@ -65,10 +74,10 @@ router.put('/api/projects/update/:id', (req, res, next) => {
   .catch(err => next(err))
 })
 
-router.delete('/api/projects/delete/:id', (req, res, next) => {
+router.delete('/api/projects/delete/:id', ensureAuthenticated, (req, res, next) => {
   Projects.findByIdAndDelete(req.params.id)
   .then(project => {
-    res.json([{response: "The project was deleted"}, project])
+    req.flash('success', "The project was successfully deleted")
   })
   .catch(err => next(err))
 })
