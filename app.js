@@ -97,6 +97,8 @@ passport.use(new LocalStrategy((username, password, next) => {
   });
 }));
 
+
+
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   res.locals.errorMessage = req.flash('error');
