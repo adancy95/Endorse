@@ -134,6 +134,16 @@
         </nav>
       </div>
       <div class="col-10 main-body">
+        {{#if errorMessage}}
+          <div class="alert alert-danger" role="alert">
+              {{errorMessage}}
+          </div>
+        {{/if}}
+        {{#if successMessage}}
+            <div class="alert alert-success" role="alert">
+            {{successMessage}}
+          </div>
+        {{/if}}
         {{{body}}}
       </div>
     </div>
