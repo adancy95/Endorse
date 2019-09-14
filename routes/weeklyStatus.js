@@ -35,27 +35,30 @@ router.get('/api/weeklystatus', (req, res, next) => {
 })
 
 router.get('/api/weeklystatus/status/:id', (req, res, next) => {
-  WeeklyStatus.findById(req.params.id)
+  WeeklyStatus.findById(req.params.id).populate('tester')
   .then(status => {
       let beginDateVal = moment(status.beginDate).format('YYYY-MM-DD')
       let endDateVal = moment(status.endDate).format('YYYY-MM-DD')
-    res.json({status, beginDateVal, endDateVal })
+      let formattedBeginDate = moment(status.beginDate).format("MMMM Do, YYYY"); 
+      let formattedEndDate = moment(status.endDate).format("MMMM Do, YYYY")
+      let formattedUpdatedDate = moment(status.updated_at).format("MMMM Do YYYY, h:mm a")
+    res.json({status, beginDateVal, endDateVal, formattedBeginDate, formattedEndDate,  formattedUpdatedDate })
   })
   .catch(err => next(err))
 })
 
 router.post('/api/weeklystatus/create', (req, res, next) => {
   WeeklyStatus.create({
-    tester: req.body.tester,
-    beginDate: req.body.beginDate,
-    endDate: req.body.endDate,
-    bugsCreated: req.body.bugsCreated,
-    ticketsRejected: req.body.ticketsRejected,
-    stories: req.body.stories,
-    blockers: req.body.blockers,
-    general: req.body.general,
-    nextWeek: req.body.nextWeek,
-    testCases: req.body.testCases,
+    tester: req.body[0].value,
+    beginDate: req.body[1].value,
+    endDate: req.body[2].value,
+    stories: req.body[3].value,
+    bugsCreated: req.body[4].value,
+    ticketsRejected: req.body[5].value,
+    blockers: req.body[6].value,
+    general: req.body[7].value,
+    nextWeek: req.body[8].value,
+    testCases: req.body[9].value,
   })
   .then(status => {
     res.json([{response: "The weekly status was created"},  status])
@@ -65,17 +68,18 @@ router.post('/api/weeklystatus/create', (req, res, next) => {
 })
 
 router.put('/api/weeklystatus/update/:id', (req, res, next) => {
+  
   WeeklyStatus.findByIdAndUpdate(req.params.id, {
-    tester: req.body.tester,
-    beginDate: req.body.beginDate,
-    endDate: req.body.endDate,
-    bugsCreated: req.body.bugsCreated,
-    ticketsRejected: req.body.ticketsRejected,
-    stories: req.body.stories,
-    blockers: req.body.blockers,
-    general: req.body.general,
-    nextWeek: req.body.nextWeek,
-    testCases: req.body.testCases
+    tester: req.body[0].value,
+    beginDate: req.body[1].value,
+    endDate: req.body[2].value,
+    stories: req.body[3].value,
+    bugsCreated: req.body[4].value,
+    ticketsRejected: req.body[5].value,
+    blockers: req.body[6].value,
+    general: req.body[7].value,
+    nextWeek: req.body[8].value,
+    testCases: req.body[9].value
   })
   .then(updatedStatus => {
     res.json([{response: "The weekly status was updated"}, updatedStatus])
