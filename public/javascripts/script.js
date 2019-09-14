@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
       $('#user-links').after(`
       <div class="users-nav"> 
         <img src="${user.userImage}" alt="profilepic" class="user-img">
-        <a class="nav-link text-warning " href="/weeklystatus/${user._id}">${user.firstName} ${user.lastName}</a>
+        <a class="nav-link text-warning " href="/weeklystatus/${user._id}">${user.firstName} ${user.lastName} </a>
       </div>
       <hr>
       `)
