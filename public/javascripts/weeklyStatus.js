@@ -61,10 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
  
   
   $(document).on("click", "#delete-status", function(event){
+   event.currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.remove()
     let statusId = event.currentTarget.getAttribute('data-id');
     event.preventDefault()
     axios.delete(`/api/weeklystatus/delete/${statusId}`)
-   .then(response => {console.log(response)})
+   .then(response => {})
    .catch(err => console.log(err))
 
  });

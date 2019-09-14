@@ -72,10 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
  
 
  $(document).on("click", "#delete-project", function(event){
+  let cardToDelete = event.currentTarget.parentNode.parentNode.remove();
   let projectId = event.currentTarget.getAttribute('data-id');
   event.preventDefault()
   axios.delete(`/api/projects/delete/${projectId}`)
- .then(response => {console.log(response)})
+ .then(response => {})
  .catch(err => console.log(err))
 
 });
