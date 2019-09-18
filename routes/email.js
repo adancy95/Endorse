@@ -1,22 +1,35 @@
-const nodemailer = require('nodemailer');
+const express = require('express');
+const router = express.Router();
+const WeeklyStatus = require('../models/weeklyStatus');
+const TestArtifacts = require('../models/testartifact');
+const moment = require('moment')
+const sgMail = require('@sendgrid/mail');
+const CronJob = require('cron').CronJob
 
-let transporter = nodemailer.createTransport({
-  service: 'Gmail',
-  host: 'smtp.gmail.com',
-  secure: false,
-  auth: {
-    user:  process.env.EMAIL_USERNAME,
-    pass: process.env.EMAIL_PASSWORD
-  }
-});
 
-transporter.sendMail({
-  from: process.env.EMAIL_USERNAME,
-  to:  process.env.Email_RECIPIENT, 
-  subject: 'Awesome Subject', 
-  text: 'Awesome Message',
-  html: '<b>Awesome Message</b>'
-})
-.then(info => console.log(info))
-.catch(error => console.log(error))
+new CronJob('* * * * * 1', function() {
+  WeeklyStatus.find()
+  .then(statuses => {
+      sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+      const msg = {
+      to: process.env.EMAIL_FROM,
+      from: process.env.EMAIL_RECIPIENT,
+      subject: 'Weekly Status Reports for the Week of',
+      text: 'Here is the weekly status recap',
+      html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    };
+    sgMail.send(msg)
+    .then(() => {
+      console.log("sent")
+    })
+    .catch((err) => {console.log(err)});
+  })
+  .catch(err => console.log(err))
+
+
+
+}, null, true, 'America/Los_Angeles');
+
+
+
 
