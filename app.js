@@ -15,6 +15,11 @@ const passport     = require("passport");
 const LocalStrategy= require("passport-local").Strategy;
 const flash        = require("connect-flash");
 const methodOverride = require('method-override')
+const Handlebars = require("handlebars");
+const moment = require('moment');
+const MomentHandler = require("handlebars.moment");
+MomentHandler.registerHelpers(Handlebars);
+
 
 
 mongoose
@@ -103,6 +108,7 @@ app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   res.locals.errorMessage = req.flash('error');
   res.locals.successMessage=req.flash('success');
+  res.locals.moment = require('moment');
   next();
 });
 
