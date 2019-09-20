@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Oswald|Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="jquery-ui.min.css">
+  <script src="external/jquery/jquery.js"></script>
+  <script src="jquery-ui.min.js"></script>
 </head>
 <body>
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white border-bottom border-warning">
@@ -28,7 +31,7 @@
         </li>
         <li class="nav-item">
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#createModal">
+          <button type="button" id="create-btn" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#createModal">
             Create Weekly Status
           </button>
 
@@ -48,6 +51,7 @@
                         <input type="hidden" name="tester" value="{{currentUser._id}}">
                       </div>
                       <div class="form-group">
+                        <input type="text" id="datepicker" value="The Date">
                         <label for="beginDate">Week Start Date</label>
                         <input type="date" name="beginDate">
                         <label for="endDate">Week End Date</label>
@@ -119,11 +123,11 @@
     </div>
   </nav>
   
-  <div class="container-fluid">
+  <div class="container-fluid ">
     <div class="row">
       <div class="col-2  side-bar">
         <nav class="navbar navbar-light bg-white left-nav">
-          <ul class="nav flex-column left-nav-links">
+          <ul class="nav flex-column">
             <li class="nav-item">
               <a class="nav-link mid" href="/projects" id="project-links"><h4>Projects</h4></a>
             </li>
