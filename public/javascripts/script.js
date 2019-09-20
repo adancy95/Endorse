@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
           `)
   }
-
+ 
   $('#createModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
   })
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     projects.data.forEach(project => {
       $('#project-links').after(`<a class="nav-link text-warning" href='/projects/${project._id}'>
       <img id="" src="../images/quill-drawing-a-line (1).png" width="20" height="20" >
-      ${project.projectName}</a> <hr>`)
+      ${project.projectName}</a>`)
     });
   })
   .catch(err => console.log(err))

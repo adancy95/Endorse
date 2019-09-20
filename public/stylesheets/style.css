@@ -28,8 +28,8 @@ a {
 
 .side-bar {
   position: fixed;
-  padding-top: 10px;
-  height: 100vh;
+  padding-bottom: 20px;
+  height: 95%;
   min-width: 250px;
   max-width: 250px;
   overflow-x: hidden;
@@ -37,14 +37,11 @@ a {
   margin-left: -100px; }
 
 .left-nav {
-  padding-top: 100px;
-  height: 100vh;
   min-width: 250px;
   max-width: 250px; }
 
-.left-nav-links {
-  padding-left: 1em;
-  margin-top: -30vh; }
+.nav-item {
+  padding-left: 15px; }
 
 .navbar-brand {
   font-family: 'Pacifico', cursive;
