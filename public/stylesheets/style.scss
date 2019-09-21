@@ -41,7 +41,7 @@ a {
   min-width: 250px;
   max-width: 250px;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
   margin-left: -100px;
 }
 
@@ -53,6 +53,11 @@ a {
 .nav-item {
   padding-left: 15px;
 }
+
+.nav-bar-info {
+  margin-top: -300px;
+}
+
 .navbar-brand {
   font-family: 'Pacifico', cursive;
   color: #e65100;
