@@ -33,12 +33,18 @@ a {
   min-width: 250px;
   max-width: 250px;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
   margin-left: -100px; }
 
 .left-nav {
   min-width: 250px;
-  max-width: 250px; }
+  max-width: 250px; 
+  min-height: 100vh;
+}
+
+.nav-bar-info {
+  margin-top: -300px;
+}
 
 .nav-item {
   padding-left: 15px; }
