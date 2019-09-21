@@ -1,6 +1,10 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  $('.collapser').click(function () {
+    $(this).next().collapse('toggle');
+  });
+
   
   $(document).on("click", "#edit-status", function(event){
     let targetStatusCard = event.currentTarget.parentNode.parentNode.parentNode.querySelectorAll('p')
