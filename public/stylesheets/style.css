@@ -38,13 +38,7 @@ a {
 
 .left-nav {
   min-width: 250px;
-  max-width: 250px; 
-  min-height: 100vh;
-}
-
-.nav-bar-info {
-  margin-top: -300px;
-}
+  max-width: 250px; }
 
 .nav-item {
   padding-left: 15px; }
