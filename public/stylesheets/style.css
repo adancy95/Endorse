@@ -43,6 +43,9 @@ a {
 .nav-item {
   padding-left: 15px; }
 
+.nav-bar-info {
+  min-height: 100vh; }
+
 .navbar-brand {
   font-family: 'Pacifico', cursive;
   color: #e65100; }
