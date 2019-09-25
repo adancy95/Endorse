@@ -85,8 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
   .then(projects => {
     projects.data.forEach(project => {
       $('#project-links').after(`<a class="nav-link text-warning" href='/projects/${project._id}'>
-      <img id="" src="../images/quill-drawing-a-line (1).png" width="20" height="20" >
-      ${project.projectName}</a>`)
+      <img id="" src="../images/quill-drawing-a-line (1).png" width="20" height="20" > <span id=${project._id}>${project.projectName}</span>
+      </a>`)
     });
   })
   .catch(err => console.log(err))

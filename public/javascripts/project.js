@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
   $(document).on("click", "#addProjectBtn", function(event){
     event.preventDefault()
     let projectName = $('#project-name').val();
-    console.log(projectName)
     axios.post(`/api/projects/create`, {projectName: projectName})
     .then(project => {
       $('#project-name').val("")
@@ -23,6 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           `
         );
+        $('#project-links').after(`<a class="nav-link text-warning" href='/projects/${project.data._id}'>
+        <img id="" src="../images/quill-drawing-a-line (1).png" width="20" height="20" >
+        <span id=${project.data._id}>${project.data.projectName}</span></a>`)
       })
       .catch(err => console.log(err))
     })
@@ -33,11 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault()
     let projectId = event.currentTarget.getAttribute('data-id');
     let projectName = event.currentTarget.parentNode.querySelector('a')
-    console.log(projectName)
     axios.get(`/api/projects/${projectId}`)
     .then(project => {
       $('#editProject input[name="projectName"]').val(project.data.projectName);
       $('#editProject input[name="id"]').val(project.data._id);
+      console.log($(`#${project.data._id}`))
+      $(`#${project.data._id}`).text(project.data.projectName);
     })
     .catch(err => console.log(err))
     
