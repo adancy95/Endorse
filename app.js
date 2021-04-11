@@ -21,15 +21,12 @@ const moment = require("moment");
 const MomentHandler = require("handlebars.moment");
 MomentHandler.registerHelpers(Handlebars);
 
-mongoose
-  .connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
+MongoClient.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
   .then(x => {
-    console.log(
-      `Connected to Mongo! Database name: "${x.connections[0].name}"`
-    );
+    console.log(`Connected to Mongo!`);
   })
   .catch(err => {
     console.error("Error connecting to mongo", err);
