@@ -6,7 +6,6 @@ const express = require("express");
 const favicon = require("serve-favicon");
 const hbs = require("hbs");
 const mongoose = require("mongoose");
-const MongoClient = require("mongodb").MongoClient;
 const logger = require("morgan");
 const path = require("path");
 const session = require("express-session");
@@ -21,10 +20,11 @@ const moment = require("moment");
 const MomentHandler = require("handlebars.moment");
 MomentHandler.registerHelpers(Handlebars);
 
-MongoClient.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+mongoose
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
   .then(x => {
     console.log(`Connected to Mongo!`);
   })
